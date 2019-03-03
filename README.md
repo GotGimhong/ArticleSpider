@@ -1,17 +1,17 @@
-# ArticleSpider
-Custom spider for fetching article informations from specific url(s).
+# WechatArticleSpider
+Custom spider for fetching Wechat article from specific url(s).
 
 ## IDE
 Python 3.7.2
 
 ## Dependencies
-+ requests        2.21.0  For fetching html source.
++ urllib3         1.24.1  For fetching html source.
 + beautifulsoup4  4.7.1   For parsing html source.
++ pdfkit          0.6.1   For exporting pdf file.
 + bs4             0.0.1
-+ python-docx     0.8.10  For exporting.
 + xlrd            1.2.0   For importing.
 + pyinstaller     3.4     For building in Windows.
 + tkinter                 For GUI.
 
-## .Etc
+## Note
 *For temporary it's only supported in Windows*
