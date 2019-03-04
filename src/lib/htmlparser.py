@@ -1,6 +1,15 @@
 #! /lib python
 # -*- coding: utf-8 -*-
 
+def __getImageType(tag):
+    if not tag.has_attr("data-type"):
+        return "jpg"
+    import re
+    itype = tag["data-type"]
+    # Solve href problem, such as 'png?xxxxxxxxxx'.
+    index = itype.find("?")
+    return index == -1 and itype or itype[0 : index]
+
 def parse(key, content):
     import bs4
     import re
@@ -28,7 +37,7 @@ def parse(key, content):
             continue
         index += 1
         # Download image to local.
-        suffix = tag.has_attr("data-type") and tag["data-type"] or "jpg"
+        suffix =__getImageType(tag)
         fileName = "%s\\%s.%s" % (directory, index, suffix)
         filewriter.writeImage(data, fileName)
         # Replace source attribute.
