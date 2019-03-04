@@ -46,16 +46,22 @@ def __debug():
     from lib import urlrequester
     from lib import htmlparser
     from lib import htmltopdf
+    key = ""
+    url = ""
     # Send request.
-    url = "http://mp.weixin.qq.com/s?__biz=MjM5MTIzMzA0Ng==&mid=2651222013&idx=2&sn=f87a10ea5e0d84c30a444026fdf50342&chksm=bd4a6a848a3de392d893f8c9a81dc46864e94bf6f87ed02b9c5f6c1a7bd5f6f6c08a32902f12&scene=0#rd"
     text = urlrequester.requestHtml(url)
     # Parse html.
-    text = htmlparser.parse("debug", text)
+    text = htmlparser.parse(key, text)
     # Export to pdf.
-    htmltopdf.run(text, "debug")
+    htmltopdf.run(text, key)
 
 if __name__ == "__main__":
     import sys
+    # BeautifulSoup.prettify() may causes a large
+    # amount of recursion, which might be more than
+    # default limit (1000) of the system. Try resetting
+    # it if necessary.
+    # sys.setrecursionlimit(value bigger than 1000...)
     cmd = sys.argv[1]
     if cmd == "run":
         __run(sys.argv[2])
